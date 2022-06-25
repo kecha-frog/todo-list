@@ -28,6 +28,7 @@
 		F26C0ACD2865AFBF00D84A36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F26C0ACF2865AFBF00D84A36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F26C0AD62865B11E00D84A36 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		F2A6C6C92866E973005CB160 /* Lesson5_HW_ChainOfResponsibility.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Lesson5_HW_ChainOfResponsibility.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +53,7 @@
 		F26C0AB52865AFBC00D84A36 = {
 			isa = PBXGroup;
 			children = (
+				F2A6C6C92866E973005CB160 /* Lesson5_HW_ChainOfResponsibility.playground */,
 				F26C0AC02865AFBC00D84A36 /* todo list */,
 				F26C0ABF2865AFBC00D84A36 /* Products */,
 			);
