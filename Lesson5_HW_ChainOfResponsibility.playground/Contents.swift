@@ -20,7 +20,7 @@ enum Topping {
     case milk
     case wheep
     case sugar
-    case double(_ base: Coffe)
+    case doubleCofee
 }
 
 extension Topping: Coffe {
@@ -32,8 +32,9 @@ extension Topping: Coffe {
             return 30
         case .sugar:
             return 5
-        case .double(let base):
-            return base.coast * 0.7
+        case .doubleCofee:
+            return 70
+
         }
     }
 }
@@ -56,8 +57,9 @@ class OptionCoffee: CoffeeDecorator {
 
 
 let coffe = SimpleCoffee()
-let doubleCoffeSugarMilk = OptionCoffee(coffe, options: [.double(coffe), .sugar, .milk])
+let doubleCoffeSugarMilk = OptionCoffee(coffe, options: [.doubleCofee, .sugar, .milk])
 
 print("cofee: \(coffe.coast)")
-print("doubleCoffeSugarMilk: \(doubleCoffeSugarMilk.coast)")
+print("double Coffe + Sugar + Milk: \(doubleCoffeSugarMilk.coast)")
+
 
