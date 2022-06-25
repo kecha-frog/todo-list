@@ -7,9 +7,8 @@ protocol Coffe {
 
 protocol CoffeeDecorator: Coffe {
     var base: Coffe { get }
-    init(_ base: Coffe )
+    init(_ base: Coffe, options: [Topping] )
 }
-
 
 class SimpleCoffee: Coffe {
     var coast: Swift.Double {
@@ -17,67 +16,48 @@ class SimpleCoffee: Coffe {
     }
 }
 
-class Milk: CoffeeDecorator {
-    var base: Coffe
+enum Topping {
+    case milk
+    case wheep
+    case sugar
+    case doubleCofee
+}
 
-    required init(_ base: Coffe) {
-        self.base = base
-    }
-
+extension Topping: Coffe {
     var coast: Swift.Double {
-        return base.coast + 20.0
+        switch self {
+        case . milk:
+            return 20
+        case . wheep:
+            return 30
+        case .sugar:
+            return 5
+        case .doubleCofee:
+            return 70
+
+        }
     }
 }
 
-class Whip: CoffeeDecorator {
+class OptionCoffee: CoffeeDecorator {
     var base: Coffe
+    var options: [Topping]
 
-    required init(_ base: Coffe) {
+    required init(_ base: Coffe, options: [Topping]) {
         self.base = base
+        self.options = options
     }
 
     var coast: Swift.Double {
-        return base.coast + 30.0
+        return base.coast + options.reduce(0, { partialResult, topping in
+            return partialResult + topping.coast
+        })
     }
 }
 
-class Sugar: CoffeeDecorator {
-    var base: Coffe
-
-    required init(_ base: Coffe) {
-        self.base = base
-    }
-
-    var coast: Swift.Double {
-        return base.coast + 5.0
-    }
-}
-
-
-class Double: CoffeeDecorator {
-    var base: Coffe
-
-    required init(_ base: Coffe) {
-        self.base = base
-    }
-
-    var coast: Swift.Double {
-        return base.coast + base.coast * 0.7
-    }
-}
 
 let coffe = SimpleCoffee()
-let coffeMilk = Milk(coffe)
-let coffeWhip = Whip(coffe)
-let coffeSugar = Sugar(coffe)
-let coffeDouble = Double(coffe)
-let coffeDoubleSugar = Sugar(coffeDouble)
-
+let doubleCoffeSugarMilk = OptionCoffee(coffe, options: [.doubleCofee, .sugar, .milk])
 
 print("cofee: \(coffe.coast)")
-print("cofeeMilk: \(coffeMilk.coast)")
-print("coffeWhip: \(coffeWhip.coast)")
-print("coffeSugar: \(coffeSugar.coast)")
-print("coffeDouble: \(coffeDouble.coast)")
-print("coffeDoubleSugar: \(coffeDoubleSugar.coast)")
-
+print("double Coffe + Sugar + Milk: \(doubleCoffeSugarMilk.coast)")
